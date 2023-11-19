@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0
+             
+            width: 100%;
+            height: 100%;
+            background-image: url(img/ucimage.jpeg); /* Replace with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            position: relative; /* Ensure z-index works within this container */
+        }
+
+        #logo img {
+            max-height: 150px; /* Adjust the max-height as needed */
+            margin-bottom: 10px; /* Adjust the margin as needed */
+        }
+
+        h1 {
+            color: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            margin-top: -10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2185d0;
+        }
+
+        #chatContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #chatbox {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #messageForm {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            margin-right: 5px;
+        }
+
+        #messageInput:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        #sendMessageBtn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #sendMessageBtn:hover {
+            background-color: #2185d0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background-container"></div>
+
+<div class="container" id="loginContainer">
+    <div id="logo"><img src="img/uclogo.webp" alt="University Logo"></div>
+    <h1>University Inquiry Assistant</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="button" onclick="login()">Login</button>
+        <button type="button" onclick="continueAsGuest()">Continue as Guest</button>
+    </form>
+</div>
+
+<div class="container" id="chatContainer">
+    <h1 id="welcomeHeader">Chatbot</h1>
+    <div id="chatbox"></div>
+    <form id="messageForm">
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button type="button" id="sendMessageBtn" onclick="sendMessage()">Send</button>
+    </form>
+</div>
+
+<script>
+    function login() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        // For simplicity, check for any non-empty username as a successful login
+        if (username.trim() !== "") {
+            // Redirect to chatbot.html
+            window.location.href = 'chatbot.html';
+        }
+    }
+
+    function continueAsGuest() {
+        // Redirect to chatbot.html
+        window.location.href = 'chatbot.html';
+    }
+
+    function sendMessage() {
+        var messageInput = document.getElementById('messageInput');
+        var chatbox = document.getElementById('chatbox');
+        var message = messageInput.value;
+
+        // For simplicity, just display the message in the chatbox
+        chatbox.innerHTML += '<p><strong>User:</strong> ' + message + '</p>';
+
+        // Clear the input field
+        messageInput.value = '';
+    }
+</script>
+
+</body>
+</html>

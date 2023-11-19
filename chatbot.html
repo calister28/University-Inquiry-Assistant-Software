@@ -1,0 +1,176 @@
+<!-- answers.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answers Page</title>
+    <style>
+        /* Your existing styles remain unchanged */
+
+        .container {
+            width: 750px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #questionInput {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        #questionInput:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        #getAnswerBtn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #getAnswerBtn:hover {
+            background-color: #2185d0;
+        }
+
+        #answerResult {
+            color: #333;
+            margin-top: 10px;
+        }
+
+        #historyContainer {
+            margin-top: 20px;
+            width: 750px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        #questionHistory {
+            white-space: pre-line;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(img/ucimage.jpeg); /* Replace with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ask a Question</h1>
+    <input type="text" id="questionInput" placeholder="Type your question...">
+    <button type="button" id="getAnswerBtn" onclick="getAnswer()">Get Answer</button>
+    <p id="answerResult"></p>
+</div>
+
+<div class="background-container"></div>
+
+<div class="container" id="historyContainer">
+    <h1>Question History</h1>
+    <p id="questionHistory"></p>
+</div>
+
+<script>
+    var questionHistoryArray = [];
+
+    function getAnswer() {
+        var questionInput = document.getElementById('questionInput');
+        var answerResult = document.getElementById('answerResult');
+        var questionHistory = document.getElementById('questionHistory');
+        var question = questionInput.value.toLowerCase();
+
+        // Add logic for "Give me your course listing"
+        if (question.includes('course') || question.includes('listing')) {
+            answerResult.innerText = 'Here is a list of our courses:\n\n' +
+                'BSA - Bachelor of Science in Accountancy\nBA - Bachelor of Arts\n' +
+                'BSBSE - Bachelor of Secondary Education major in Biological Science\n' +
+                'BSBA - Bachelor of Science in Business Administration\n' +
+                'BSCE - Bachelor of Science in Civil Engineering\nBSC - Bachelor of Science in Commerce\n' +
+                'BSCompE - Bachelor of Science in Computer Engineering\n' +
+                'AssoCT - Associate in Computer Technology\nBSCrim - Bachelor of Science in Criminology\n' +
+                'BSCA - Bachelor of Science in Customs Administration\n' +
+                'BSEE - Bachelor of Science in Electrical Engineering\n' +
+                'BSECE - Bachelor of Science in Electronics and Comm. Engineering\n' +
+                'BEEd - Bachelor of Elementary Education\n' +
+                'BSEng - Bachelor of Secondary Education major in English\n' +
+                'ETEEAP - Expanded Tertiary Education Equivalency and Accreditation Program\n' +
+                'BSEFil - Bachelor of Secondary Education major in Filipino\n' +
+                'BSHRM - BS in Hotel and Restaurant Management (LAD)\n' +
+                'AssoHRM - Associate in Hotel and Restaurant Mgt.\n' +
+                'BSIE - Bachelor of Science in Industrial Engineering\n' +
+                'BSIT - Bachelor of Science in Information Technology (LAD)\n' +
+                'BSEMath - Bachelor of Secondary Education major in Mathematics\n' +
+                'BSMAPEH - Bachelor of Secondary Education major in Music, Arts Physical Education, and Health\n' +
+                'BSME - Bachelor of Science in Mechanical Engineering\n' +
+                'BSNAME - Bachelor of Science in Naval Arch. & Marine Engineering\n' +
+                'BSOA - Bachelor of Science in Office Administration\n' +
+                'BSPS - Bachelor of Secondary Education major in Physical Science\n' +
+                'BSREM - Bachelor of Science in Real Estate Management\n' +
+                'BSSS - Bachelor of Secondary Education major in Social Studies\n' +
+                'BSSW - Bachelor of Science in Social Work\n' +
+                'SpEd - Special Education';
+        } else if (question.includes('enroll') || question.includes('enrollment')) {
+            answerResult.innerText = 'You may proceed to the enrollment portal at "enrollment.uc.edu.ph"';
+        } else if (question.includes('grade') || question.includes('grades')) {
+            answerResult.innerText = 'You can view your grade on "grade.uc.edu.ph", and it is also accessible through the enrollment portal at "enrollment.uc.edu.ph"\n' +
+            'Step 1: Go to the enrollment portal\n' +
+            'Step 2: Enter your credentials correctly\n' +
+            'Step 3: Navigate to the "Transactions" tab. You will now see a "Grade" header. You can choose between two options: "View Grade by School Term" and "View My Grades History."' ; 
+        } else if (question.includes('tuition') || question.includes('fees')) {
+            answerResult.innerText = 'I don\'t have specific knowledge regarding the tuition amounts for each of the courses; however, the estimated tuition for each course is around 25,000 PHP to 35,000 PHP, depending on the year level.';
+        } else {
+            answerResult.innerText = 'I\'m sorry, I don\'t have an answer for that question.';
+        }
+
+        // Save the question in the history array
+        questionHistoryArray.push({ question: question, answer: answerResult.innerText });
+
+        // Update the question history display
+        questionHistory.innerText = questionHistoryArray.map(entry => `Q: ${entry.question}\nA: ${entry.answer}`).join('\n\n');
+
+        // Clear the input field
+        questionInput.value = '';
+    }
+</script>
+
+</body>
+</html>
